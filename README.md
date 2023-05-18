@@ -5,12 +5,12 @@
 ### For GPT2-related LM experiments
 1. Put your text data into ./data (see an small example in ./data/openwebtext_2017_18_small).
 2. Run the python code src/LM/preprocessing/prepare_gpt2_id_corpus_from_raw.py (change the file paths if necessary) to preprocess your text data
-3. Run the script ./bin/LM/main_GPT2.sh (change the python path, data paths, or different configurations if necessary) to train the model
+3. Run the script ./bin/LM/main.sh (change the python path, data paths, or different configurations if necessary) to train the model
 4. Compare the validation differences from the log files
 
 
 ### For summarization experiments
-1. Run the script ./bin/summarization/cnndm-t5.sh (change the python path, data paths, or different configurations if necessary) to train the model
+1. Run the script ./bin/summarization/main.sh (change the python path, data paths, or different configurations if necessary) to train the model
 2. Compare the validation differences from the log files
 
 
@@ -29,4 +29,6 @@ conda install nltk
 git clone https://github.com/huggingface/transformers.git
 cd transformers
 pip install -e .
+
+pip install datasets
 ```
