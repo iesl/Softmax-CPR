@@ -1,5 +1,8 @@
 # dynamic-partitions
 
+Codes for ACL2023 finding paper `Revisiting the Architectures like Pointer Networks to Efficiently Improve the Next Word Distribution, Summarization Factuality, and Beyond`
+
+
 ## How to Run
 
 ### For GPT2-related LM experiments
