@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# train
+python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 5 --n_facet 1 --n_facet_context 1 --context_source encode decode --n_facet_context 1 --n_facet_local_encoder 0 --n_facet_reranker 1 --reranker_CAN_NUM 100 20 --n_facet_hidden 3 --n_facet_window -2 --n_facet_MLP -1 --output_dir models/summarization/test --preproc_data_dir models/summarization --preproc_data_dir models/summarization --predict_with_generate --include_inputs_for_metrics
+
+# #only eval
+# python src/summarization/main.py --model_name_or_path t5-small --do_eval --dataset_name kmfoda/booksum --text_column text --summary_column summary --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 5 --n_facet 1 --n_facet_context 1 --context_source encode decode --n_facet_context 1 --n_facet_local_encoder 0 --n_facet_reranker 1 --reranker_CAN_NUM 100 20 --n_facet_hidden 3 --n_facet_window -2 --n_facet_MLP -1 --output_dir models/summarization/test --preproc_data_dir models/summarization --preproc_data_dir models/summarization --predict_with_generate --include_inputs_for_metrics
+
+
+# --dataset_name cnn_dailymail --text_column article --summary_column highlights
+# --dataset_name samsum --text_column dialogue --summary_column summary
+# --dataset_name xsum --text_column document --summary_column summary
+# --train_file booksum_train_file_path --validation_file booksum_val_file_path --text_column text --summary_column summary
+
+
+# different methods
+# python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 1 --n_facet 1 --n_facet_context 0 --n_facet_local_encoder 0 --n_facet_reranker 0 --n_facet_hidden 1 --n_facet_window 0 --n_facet_MLP 0 --output_dir ./models/t5-small_nall1_nfacet1_context0_local0_reranker0_H1_W0_MLP0 --preproc_data_dir ./models --predict_with_generate --include_inputs_for_metrics #S
+
+# python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 2 --n_facet 1 --n_facet_context 0 --n_facet_local_encoder 0 --n_facet_reranker 1 --reranker_CAN_NUM 20 --n_facet_hidden 1 --n_facet_window 0 --n_facet_MLP 0 --output_dir ./models/t5-small_nall2_nfacet1_context0_local0_reranker1-20_H1_W0_MLP0 --preproc_data_dir ./models --predict_with_generate --include_inputs_for_metrics #S+ R:20
+#because n_facet_reranker only has 20, so n_facet_all should be 1+1*1=2, if --reranker_CAN_NUM 100 20, then n_facet_all should be 1+1*2=3
+
+# python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 3 --n_facet 1 --n_facet_context 1 --context_source encode decode --n_facet_local_encoder 0 --n_facet_reranker 0 --n_facet_hidden 1 --n_facet_window 0 --n_facet_MLP 0 --output_dir ./models/t5-small_nall2_nfacet1_context1-encode-decode_local0_reranker0_H1_W0_MLP0 --preproc_data_dir ./models --predict_with_generate --include_inputs_for_metrics #S + CE
+#because n_facet_context has both encode and decode, so n_facet_all should be 1+1*2=3, if --context_source encode, then n_facet_all should be 1+1*1=2
+
+# python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 4 --n_facet 1 --n_facet_context 1 --context_source encode decode --n_facet_local_encoder 0 --n_facet_reranker 1 --reranker_CAN_NUM 20 --n_facet_hidden 1 --n_facet_window 0 --n_facet_MLP 0 --output_dir ./models/t5-small_nall3_nfacet1_context1-encode-decode_local0_reranker1-20_H1_W0_MLP0 --preproc_data_dir ./models --predict_with_generate --include_inputs_for_metrics #S + CER:20
+
+# python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 7 --n_facet 1 --n_facet_context 1 --context_source encode decode --n_facet_local_encoder 1 --n_facet_reranker 1 --reranker_CAN_NUM 20 --n_facet_hidden 1 --n_facet_window 0 --n_facet_MLP 0 --output_dir ./models/t5-small_nall6_nfacet1_context1-encode-decode_local1_reranker1-20_H1_W0_MLP0 --preproc_data_dir ./models --predict_with_generate --include_inputs_for_metrics #S+CEPR:20
+
+# python src/summarization/main.py --model_name_or_path t5-small --do_train --do_eval --dataset_name cnn_dailymail --text_column article --summary_column highlights --overwrite_output_dir --no_train_epochs 3 --per_device_train_batch_size 8 --per_device_eval_batch_size 8 --seed 340 --n_facet_all 7 --n_facet 1 --n_facet_context 1 --context_source encode decode --n_facet_local_encoder 1 --n_facet_reranker 1 --reranker_CAN_NUM 20 --n_facet_hidden 1 --n_facet_window -2 --n_facet_MLP -1 --output_dir ./models/t5-small_nall6_nfacet1_context1-encode-decode_local1_reranker1-20_H1_W-2_MLP-1 --preproc_data_dir ./models --predict_with_generate --include_inputs_for_metrics #S+CEPR:20 + Mi
