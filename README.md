@@ -1,7 +1,12 @@
-# dynamic-partitions
+# Softmax-CPR <img src="https://github.com/iesl/Softmax-CPR/blob/main/imgs/automated-external-defibrillators-g7991e1588_640.png?raw=true" width="30" height="30"> <br> ("C"ontext Partition, "P"ointer Network, and "R"eranker Partition) 
 
-Codes for ACL2023 finding paper `Revisiting the Architectures like Pointer Networks to Efficiently Improve the Next Word Distribution, Summarization Factuality, and Beyond`
+<p align="center"><img src="https://github.com/iesl/Softmax-CPR/blob/main/imgs/dynamic_partitions.png?raw=true" width="651" height="500"></p>
 
+## Introduction
+
+The softmax bottleneck [(Chang and McCallum (2022))](https://aclanthology.org/2022.acl-long.554.pdf) sometimes prevents the language models from predicting the desired distribution and the pointer networks can be used to break the bottleneck efficiently. Based on the finding, we propose several softmax alternatives by simplifying the pointer networks and accelerating the word-by-word rerankers. In GPT-2, our proposals are significantly better and more efficient than mixture of softmax, a state-of-the-art softmax alternative. In summarization experiments, without significantly decreasing its training/testing speed, our best method based on T5-Small improves factCC score by 2 points in CNN/DM and XSUM dataset, and improves MAUVE scores by 30\% in BookSum paragraph-level dataset.
+
+![Softmax CEPR](https://github.com/iesl/Softmax-CPR/blob/main/imgs/all_partitions.png?raw=true)
 
 ## How to Run
 
@@ -35,3 +40,7 @@ pip install -e .
 
 pip install datasets
 ```
+
+## Citation
+
+Codes for ACL2023 finding paper `Revisiting the Architectures like Pointer Networks to Efficiently Improve the Next Word Distribution, Summarization Factuality, and Beyond`
