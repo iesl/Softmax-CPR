@@ -45,4 +45,12 @@ pip install datasets
 
 ## Citation
 
-Codes for ACL2023 finding paper `Revisiting the Architectures like Pointer Networks to Efficiently Improve the Next Word Distribution, Summarization Factuality, and Beyond`
+```
+@inproceedings{chang2023revisiting,
+  title={Revisiting the Architectures like Pointer Networks to Efficiently Improve the Next Word Distribution, Summarization Factuality, and Beyond},
+  abbr={ACL Findings},
+  author={Haw-Shiuan Chang* and Zonghai Yao* and Alolika Gon and Hong Yu and Andrew McCallum},
+  booktitle={Findings of the Association for Computational Linguistics: ACL 2023 (Findings of ACL)},
+  year={2023},
+}
+```
